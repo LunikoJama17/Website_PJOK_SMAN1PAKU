@@ -1,0 +1,21 @@
+﻿"Test Case",Input,"Expected Output",Status
+"Valid admin login","Username dan password admin yang valid","Redirect ke `pages/admin/dashboard.php`",Valid
+"Valid guru login","Username dan password guru yang valid","Redirect ke `pages/guru/dashboard.php`",Valid
+"Valid siswa login","Username dan password siswa yang valid","Redirect ke `pages/siswa/dashboard.php`",Valid
+"Username salah","Username salah, password benar","Tampil pesan error ""Username atau password salah""",Valid
+"Password salah","Username benar, password salah","Tampil pesan error ""Username atau password salah""",Valid
+"Form kosong","Tidak mengisi username dan password","Tampil validasi bahwa form tidak boleh kosong",Valid
+"Kontrol akses dengan login guru","Login sebagai guru, akses halaman pengguna admin","Akses ditolak atau redirect",Valid
+"Lihat daftar pengguna guru","Login sebagai admin, akses daftar pengguna guru","Halaman daftar pengguna berhasil dimuat",Valid
+"Lihat daftar pengguna siswa","Login sebagai admin, akses daftar pengguna siswa","Halaman daftar pengguna berhasil dimuat",Valid
+"Tambah pengguna guru","Isi semua field pengguna guru","Pengguna tersimpan dan tampil di daftar",Valid
+"Tambah pengguna siswa","Isi semua field pengguna siswa","Pengguna tersimpan dan tampil di daftar",Valid
+"Edit pengguna guru","Ubah data pengguna guru","Data diperbarui dan redirect ke halaman utama pengguna",Valid
+"Edit pengguna siswa","Ubah data pengguna siswa","Data diperbarui dan redirect ke halaman utama pengguna",Valid
+"Hapus pengguna guru","Klik tombol hapus pengguna guru","Data pengguna dihapus dari database",Valid
+"Hapus pengguna siswa","Klik tombol hapus pengguna siswa","Data pengguna dihapus dari database",Valid
+"Lihat daftar materi (admin)","Login sebagai admin, akses daftar materi","Daftar materi ditampilkan",Valid
+"Lihat daftar materi (guru)","Login sebagai guru, akses daftar materi","Daftar materi ditampilkan",Valid
+"Tambah materi valid (admin)","Isi semua form materi valid","Materi tersimpan, redirect ke daftar materi",Valid
+"Tambah materi kosong (admin)","Form kosong","Tampil pesan validasi ""Field harus diisi""",Valid
+"Logout admin","Klik tombol Logout","Diredirect ke `auth/login.php` dan session dibersihkan",Valid
