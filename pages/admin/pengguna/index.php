@@ -69,13 +69,13 @@ $pengguna = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
 <div class="container mx-auto mt-8 px-4">
     <h1 class="text-3xl font-semibold text-center mb-6">Kelola Pengguna</h1>
 
-    <!-- Navigasi Role Centered -->
+    <!-- Navigasi Role -->
     <div class="mb-6 flex justify-center space-x-4 p-2">
         <a href="?role=guru" class="px-6 py-3 text-white <?= ($role === 'guru') ? 'bg-indigo-600' : 'bg-gray-600'; ?> hover:bg-indigo-700 rounded-md">Guru</a>
         <a href="?role=siswa" class="px-6 py-3 text-white <?= ($role === 'siswa') ? 'bg-indigo-600' : 'bg-gray-600'; ?> hover:bg-indigo-700 rounded-md">Siswa</a>
     </div>
 
-    <!-- Tombol Tambah Centered -->
+    <!-- Tombol Tambah -->
     <div class="mb-6 flex justify-center p-2">
         <a href="tambah.php?role=<?= $role ?>" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md">+ Tambah <?= ucfirst($role) ?></a>
     </div>
@@ -120,17 +120,45 @@ $pengguna = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
         </div>
 
         <!-- Pagination -->
-        <div class="flex justify-center space-x-2 mt-4">
-            <?php if ($page > 1): ?>
-                <a href="?role=<?= $role ?>&page=<?= $page - 1 ?>" class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">&laquo; Prev</a>
-            <?php endif; ?>
-            <?php for ($p = 1; $p <= $totalPages; $p++): ?>
-                <a href="?role=<?= $role ?>&page=<?= $p ?>" class="px-3 py-1 rounded <?= ($p === $page) ? 'bg-indigo-600 text-white' : 'bg-gray-200 hover:bg-gray-300'; ?>"><?= $p ?></a>
-            <?php endfor; ?>
-            <?php if ($page < $totalPages): ?>
-                <a href="?role=<?= $role ?>&page=<?= $page + 1 ?>" class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">Next &raquo;</a>
-            <?php endif; ?>
-        </div>
+        <?php if ($totalPages > 1): ?>
+        <nav class="flex justify-center mt-6" aria-label="Pagination">
+            <ul class="inline-flex -space-x-px text-sm">
+                <?php if ($page > 1): ?>
+                    <li>
+                        <a href="?role=<?= $role ?>&page=<?= $page - 1 ?>" class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">&laquo; Prev</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php
+                $start = max(1, $page - 2);
+                $end = min($totalPages, $page + 2);
+
+                if ($start > 1) {
+                    echo '<li><a href="?role=' . $role . '&page=1" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a></li>';
+                    if ($start > 2) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+                }
+
+                for ($i = $start; $i <= $end; $i++): ?>
+                    <li>
+                        <a href="?role=<?= $role ?>&page=<?= $i ?>" class="px-3 py-2 leading-tight border border-gray-300 <?= ($i === $page) ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700'; ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor;
+
+                if ($end < $totalPages) {
+                    if ($end < $totalPages - 1) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+                    echo '<li><a href="?role=' . $role . '&page=' . $totalPages . '" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">' . $totalPages . '</a></li>';
+                }
+                ?>
+
+                <?php if ($page < $totalPages): ?>
+                    <li>
+                        <a href="?role=<?= $role ?>&page=<?= $page + 1 ?>" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Next &raquo;</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <?php endif; ?>
+
     <?php else: ?>
         <p class="text-gray-500 mt-4 text-center">Tidak ada data untuk ditampilkan.</p>
     <?php endif; ?>

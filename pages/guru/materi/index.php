@@ -116,24 +116,49 @@ include "../../../includes/navbar_guru.php";
     <?php endforeach; ?>
   </div>
 
-  <!-- Pagination -->
-  <?php if($totalPages>1): ?>
-    <div class="mt-6 flex justify-center space-x-2">
-      <?php if($page>1): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $page-1 ?>"
-           class="px-3 py-1 bg-white text-indigo-800 rounded hover:bg-gray-100">&laquo; Prev</a>
+  <!-- Pagination Nav -->
+  <?php if ($totalPages > 1): ?>
+  <nav class="flex justify-center mt-6" aria-label="Pagination">
+    <ul class="inline-flex -space-x-px text-sm">
+      <?php if ($page > 1): ?>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $page - 1 ?>"
+             class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">&laquo; Prev</a>
+        </li>
       <?php endif; ?>
-      <?php for($i=1;$i<=$totalPages;$i++): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $i ?>"
-           class="px-3 py-1 rounded <?= $i==$page?'bg-indigo-800 text-white':'bg-gray-200 text-gray-700 hover:bg-gray-300' ?>">
-          <?= $i ?>
-        </a>
-      <?php endfor; ?>
-      <?php if($page<$totalPages): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $page+1 ?>"
-           class="px-3 py-1 bg-white text-indigo-800 rounded hover:bg-gray-100">Next &raquo;</a>
+
+      <?php
+      $startPage = max(1, $page - 2);
+      $endPage = min($totalPages, $page + 2);
+
+      if ($startPage > 1) {
+        echo '<li><a href="?semester=' . $semester . '&page=1" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a></li>';
+        if ($startPage > 2) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+      }
+
+      for ($i = $startPage; $i <= $endPage; $i++): ?>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $i ?>"
+             class="px-3 py-2 leading-tight border border-gray-300 <?= ($i === $page) ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700'; ?>">
+             <?= $i ?>
+          </a>
+        </li>
+      <?php endfor;
+
+      if ($endPage < $totalPages) {
+        if ($endPage < $totalPages - 1) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+        echo '<li><a href="?semester=' . $semester . '&page=' . $totalPages . '" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">' . $totalPages . '</a></li>';
+      }
+      ?>
+
+      <?php if ($page < $totalPages): ?>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $page + 1 ?>"
+             class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Next &raquo;</a>
+        </li>
       <?php endif; ?>
-    </div>
+    </ul>
+  </nav>
   <?php endif; ?>
 
   <!-- SweetAlert delete & post‐add/edit -->

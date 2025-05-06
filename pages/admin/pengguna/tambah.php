@@ -50,7 +50,7 @@ if (isset($_POST['simpan'])) {
     <form method="POST" id="form-tambah" class="space-y-6">
         <div>
             <label for="id" class="block text-lg font-medium text-gray-700">ID Pengguna</label>
-            <input type="text" name="id" id="id" placeholder="ID Pengguna (Misal: G001)" required
+            <input type="text" name="id" id="id" placeholder="ID Pengguna (Misal: G001 atau S001)" required
                    class="mt-1 p-3 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-600">
         </div>
 

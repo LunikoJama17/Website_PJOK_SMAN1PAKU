@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Bulan Mei 2025 pada 09.25
+-- Waktu pembuatan: 06 Bulan Mei 2025 pada 07.16
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -54,41 +54,6 @@ CREATE TABLE `akses_materi` (
   `tgl_akses` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `akses_materi`
---
-
-INSERT INTO `akses_materi` (`id_siswa`, `id_materi`, `tgl_akses`) VALUES
-('S001', 'MTR001', '2025-03-17 18:28:13'),
-('S001', 'MTR003', '2025-05-03 04:12:37'),
-('S001', 'MTR003', '2025-05-03 04:14:02'),
-('S001', 'MTR002', '2025-05-03 04:14:22'),
-('S001', 'MTR001', '2025-05-03 04:14:26'),
-('S001', 'MTR001', '2025-05-03 04:14:48'),
-('S001', 'MTR001', '2025-05-03 04:15:55'),
-('S001', 'MTR001', '2025-05-03 04:16:40'),
-('S001', 'MTR002', '2025-05-03 04:16:48'),
-('S001', 'MTR002', '2025-05-03 04:17:48'),
-('S001', 'MTR002', '2025-05-03 04:18:32'),
-('S001', 'MTR001', '2025-05-03 04:19:30'),
-('S001', 'MTR001', '2025-05-03 04:20:26'),
-('S001', 'MTR001', '2025-05-03 04:21:24'),
-('S001', 'MTR002', '2025-05-03 04:21:29'),
-('S001', 'MTR002', '2025-05-03 04:22:38'),
-('S001', 'MTR001', '2025-05-03 04:23:01'),
-('S001', 'MTR001', '2025-05-03 04:23:13'),
-('S001', 'MTR001', '2025-05-03 04:24:23'),
-('S001', 'MTR001', '2025-05-03 04:25:29'),
-('S001', 'MTR001', '2025-05-03 04:27:43'),
-('S001', 'MTR001', '2025-05-03 04:28:22'),
-('S001', 'MTR001', '2025-05-03 04:30:41'),
-('S001', 'MTR013', '2025-05-03 05:11:28'),
-('S002', 'MTR005', '2025-05-03 13:23:02'),
-('S002', 'MTR013', '2025-05-03 13:24:03'),
-('S001', 'MTR014', '2025-05-03 13:46:31'),
-('S001', 'MTR014', '2025-05-03 14:18:33'),
-('S001', 'MTR015', '2025-05-03 14:18:44');
-
 -- --------------------------------------------------------
 
 --
@@ -107,9 +72,8 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nama_guru`, `username_guru`, `password_guru`) VALUES
-('G001', 'Budi Santoso', 'budi_guru', 'guru123'),
-('G002', 'Diky Pambudi', 'diky_guru', 'guru456'),
-('G003', 'Santi Dwi Cahya', 'santi_guru', 'guru789');
+('G001', 'Budi Santoso', 'budi_guru', 'guru001'),
+('G002', 'Naro, S.Pd', 'naro_guru', 'guru002');
 
 -- --------------------------------------------------------
 
@@ -149,7 +113,8 @@ INSERT INTO `materi` (`id_materi`, `judul_materi`, `semester_materi`, `isi_mater
 ('MTR012', 'Y', '1', 'y', 'https://youtu.be/B6yifBxT5jQ?si=gaAMD-jwZtft-nVG', NULL, 'G001', 'G001', 'guru', '2025-05-02 20:19:43'),
 ('MTR013', 'Y', '1', 'y', 'https://youtu.be/B6yifBxT5jQ?si=gaAMD-jwZtft-nVG', 'ADM001', NULL, 'ADM001', 'admin', '2025-05-03 06:33:06'),
 ('MTR014', 'Y', '1', '-', 'https://youtu.be/B6yifBxT5jQ?si=gaAMD-jwZtft-nVG', 'ADM001', NULL, '', 'admin', '2025-05-03 13:34:29'),
-('MTR015', 'Minggu 1 : Pengenalan dan Aturan (Senam Irama)', '1', 'BLALALALAL', 'https://youtu.be/B6yifBxT5jQ?si=gaAMD-jwZtft-nVG', NULL, 'G001', '', 'admin', '2025-05-03 13:50:30');
+('MTR015', 'Minggu 1 : Pengenalan dan Aturan (Senam Irama)', '1', 'Senam irama merupakan salah satu cabang olahraga yang memadukan gerakan tubuh dengan irama musik atau ketukan tertentu. Senam ini menekankan pada keluwesan, ketepatan, serta keindahan gerakan yang dilakukan secara berirama, teratur, dan harmonis. Dalam pelaksanaannya, senam irama tidak hanya melatih kebugaran jasmani, tetapi juga melatih keterampilan motorik, koordinasi, kelincahan, serta kepekaan terhadap irama musik. Gerakan-gerakan dalam senam irama dapat dilakukan secara individu maupun kelompok, dengan atau tanpa alat bantu seperti pita, bola, simpai, atau tali. Senam irama sering digunakan sebagai bagian dari kegiatan pendidikan jasmani di sekolah karena mampu memberikan manfaat fisik dan mental secara menyeluruh, serta membentuk kedisiplinan dan rasa percaya diri pada peserta.\n\nDalam melaksanakan senam irama, terdapat beberapa aturan yang harus dipatuhi untuk mencapai hasil yang optimal dan menjaga keselamatan peserta. Pertama, setiap peserta harus mengenakan pakaian yang nyaman dan sesuai agar gerakan dapat dilakukan dengan leluasa. Kedua, pemanasan wajib dilakukan sebelum memulai senam untuk menghindari cedera dan mempersiapkan tubuh terhadap aktivitas fisik. Ketiga, peserta harus mengikuti irama atau ketukan dengan cermat agar setiap gerakan terlihat selaras dan tidak kacau. Selain itu, penting untuk memperhatikan teknik dasar gerakan seperti langkah kaki, ayunan tangan, serta keseimbangan tubuh yang benar. Peserta juga diharapkan menjaga kekompakan dan disiplin, terutama dalam senam kelompok, agar gerakan dapat berjalan serempak. Terakhir, senam irama harus dilakukan di tempat yang aman dan cukup luas agar peserta bisa bergerak bebas tanpa risiko bertabrakan. Dengan memahami dan mengikuti aturan-aturan ini, senam irama dapat menjadi kegiatan yang menyenangkan, menyehatkan, dan membangun karakter positif.', 'https://youtu.be/B6yifBxT5jQ?si=gaAMD-jwZtft-nVG', NULL, 'G001', 'G001', 'guru', '2025-05-03 11:21:22'),
+('MTR808', 'Materi Test', '1', 'Konten materi test', '', 'ADM001', NULL, '', 'admin', '2025-05-05 21:50:30');
 
 -- --------------------------------------------------------
 
@@ -170,12 +135,72 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `kelas`, `username_siswa`, `password_siswa`) VALUES
-('S001', 'Dina Rahmawatini', 'X IPA 1', 'dina_siswa', 'siswa123'),
-('S002', 'Rizky Maulana', 'XI IPS 2', 'rizky_siswa', 'siswa456'),
-('S003', 'Fajar Prasetya', 'X IPS 1', 'fajar_siswa', 'siswa789'),
-('S004', 'Rudi Anggara', 'X IPS 2', 'rudi_siswa', 'siswa004'),
-('S005', 'Irwansyah', 'X IPA 2', 'irwansyah_siswa', 'siswa003'),
-('S006', 'Ananta Guna', 'X IPS 2', 'ananta_siswa', 'siswa006');
+('S001', 'Adibah Kalmasya', 'X A', 'adibah_siswa', 'siswa001'),
+('S002', 'Amanda Ayu Lestari', 'X A', 'amanda_siswa', 'siswa002'),
+('S003', 'Aura Leluni Putri', 'X A', 'aura_siswa', 'siswa003'),
+('S004', 'Celine Christiono Neundroff', 'X A', 'celine_siswa', 'siswa004'),
+('S005', 'Chiko Erianto', 'X A', 'chiko_siswa', 'siswa005'),
+('S006', 'Daniel Sigit Pratama', 'X A', 'daniel_siswa', 'siswa006'),
+('S007', 'Dea Nita', 'X A', 'dea_siswa', 'siswa007'),
+('S008', 'Estyara Pangamiany', 'X A', 'estyara_siswa', 'siswa008'),
+('S009', 'Ezra Kahanjak', 'X A', 'ezra_siswa', 'siswa009'),
+('S010', 'Grescia Natalin', 'X A', 'grescia_siswa', 'siswa010'),
+('S011', 'Jessica Maharani', 'X A', 'jessica_siswa', 'siswa011'),
+('S012', 'Joshua Okta Viu Tarukallo', 'X A', 'joshua_siswa', 'siswa012'),
+('S013', 'Ketrin Winey', 'X A', 'ketrin_siswa', 'siswa013'),
+('S014', 'Kristian Arsellino', 'X A', 'kristian_siswa', 'siswa014'),
+('S015', 'Lunaya', 'X A', 'lunaya_siswa', 'siswa015'),
+('S016', 'Manohara Delin', 'X A', 'manohara_siswa', 'siswa016'),
+('S017', 'Mirna Munita', 'X A', 'mirna_siswa', 'siswa017'),
+('S018', 'Nayanta Afrilianto', 'X A', 'nayanta_siswa', 'siswa018'),
+('S019', 'Nidia Agustin', 'X A', 'nidia_siswa', 'siswa019'),
+('S020', 'Ovaldo Benyamin', 'X A', 'ovaldo_siswa', 'siswa020'),
+('S021', 'Pasya Saputra', 'X A', 'pasya_siswa', 'siswa021'),
+('S022', 'Puspa Sridayanti', 'X A', 'puspa_siswa', 'siswa022'),
+('S023', 'Raditia Perdinata', 'X A', 'raditia_siswa', 'siswa023'),
+('S024', 'Rafael Orlando', 'X A', 'rafael_siswa', 'siswa024'),
+('S025', 'Rahmina Fitri', 'X A', 'rahmina_siswa', 'siswa025'),
+('S026', 'Refan Aditya', 'X A', 'refan_siswa', 'siswa026'),
+('S027', 'Rezky Aditya', 'X A', 'rezky_siswa', 'siswa027'),
+('S028', 'Regina Dameyanti', 'X A', 'regina_siswa', 'siswa028'),
+('S029', 'Rimayanti', 'X A', 'rimayanti_siswa', 'siswa029'),
+('S030', 'Rivaldo Singal', 'X A', 'rivaldo_siswa', 'siswa030'),
+('S031', 'Rosa', 'X A', 'rosa_siswa', 'siswa031'),
+('S032', 'Seno Jilianto', 'X A', 'seno_siswa', 'siswa032'),
+('S033', 'Siloam Stevonny', 'X A', 'siloam_siswa', 'siswa033'),
+('S034', 'Tiara Anastasya Carolinè', 'X A', 'tiara_siswa', 'siswa034'),
+('S035', 'Tio Baraja Priwijaya', 'X A', 'tio_siswa', 'siswa035'),
+('S036', 'Windi', 'X A', 'windi_siswa', 'siswa036'),
+('S037', 'Alya Dove El Blessia', 'X B', 'alya_siswa', 'siswa037'),
+('S038', 'Aiysya Putri', 'X B', 'aiysya_siswa', 'siswa038'),
+('S039', 'Anggun Wunge Firstalents', 'X B', 'anggun_siswa', 'siswa039'),
+('S040', 'Anka Kiara', 'X B', 'anka_siswa', 'siswa040'),
+('S041', 'Anwar Kusnaini', 'X B', 'anwar_siswa', 'siswa041'),
+('S042', 'Brian Adam Imanuel', 'X B', 'brian_siswa', 'siswa042'),
+('S043', 'Chelsy Agustin Enjelina', 'X B', 'chelsy_siswa', 'siswa043'),
+('S044', 'Chintia Novrianti. G', 'X B', 'chintia_siswa', 'siswa044'),
+('S045', 'Didi Chrisfama', 'X B', 'didi_siswa', 'siswa045'),
+('S046', 'Dino', 'X B', 'dino_siswa', 'siswa046'),
+('S047', 'Diva Tri Andri Leluni', 'X B', 'diva_siswa', 'siswa047'),
+('S048', 'EgiTri Hartawan Ivanka', 'X B', 'egitri_siswa', 'siswa048'),
+('S049', 'Evi Dealova', 'X B', 'evi_siswa', 'siswa049'),
+('S050', 'Frygel Pamunsu', 'X B', 'frygel_siswa', 'siswa050'),
+('S051', 'Ketty Ariani', 'X B', 'ketty_siswa', 'siswa051'),
+('S052', 'Luna Ciya', 'X B', 'luna_siswa', 'siswa052'),
+('S053', 'Maria Afriani Dua Liter', 'X B', 'maria_siswa', 'siswa053'),
+('S054', 'Markus Hariano', 'X B', 'markus_siswa', 'siswa054'),
+('S055', 'Matthew Miracle R. Wonok', 'X B', 'matthew_siswa', 'siswa055'),
+('S056', 'Meilin Yulianita', 'X B', 'meilin_siswa', 'siswa056'),
+('S057', 'Recky Lesmana', 'X B', 'recky_siswa', 'siswa057'),
+('S058', 'Resa Margareta', 'X B', 'resa_siswa', 'siswa058'),
+('S059', 'Revan Aprilian', 'X B', 'revan_siswa', 'siswa059'),
+('S060', 'Riska Enjeliani', 'X B', 'riska_siswa', 'siswa060'),
+('S061', 'Rossy Saputra', 'X B', 'rossy_siswa', 'siswa061'),
+('S062', 'Seliani Puspita Dewi', 'X B', 'seliani_siswa', 'siswa062'),
+('S063', 'Sopyan Mangku Janang', 'X B', 'sopyan_siswa', 'siswa063'),
+('S064', 'Tamara Handayani', 'X B', 'tamara_siswa', 'siswa064'),
+('S065', 'Yosua Petrianto Sejati', 'X B', 'yosua_siswa', 'siswa065'),
+('S066', 'Mikausya Putri M.', 'X B', 'mikausya_siswa', 'siswa066');
 
 --
 -- Indexes for dumped tables

@@ -70,11 +70,7 @@ include "../../../includes/navbar_admin.php";
     <?php endfor; ?>
   </div>
 
-  <div class="flex justify-center mb-6">
-    <h2 class="text-center inline-block text-2xl font-bold text-white bg-indigo-600 rounded-full px-6 py-2">Materi Pembelajaran Semester <?= $semester ?></h2>
-  </div>
-
-  <!-- Tombol Tambah Materi -->
+  <!-- Tambah Materi -->
   <div class="flex justify-center mb-6">
     <a href="tambah.php?semester=<?= $semester ?>"
        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold text-sm">
@@ -82,53 +78,70 @@ include "../../../includes/navbar_admin.php";
     </a>
   </div>
 
-  <!-- Daftar Materi sebagai Card -->
+  <!-- Daftar Materi -->
   <div class="space-y-4">
     <?php foreach ($materi as $row): ?>
       <div class="bg-white p-4 rounded-lg shadow-md max-w-2xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
-        <!-- Judul (link edit) -->
         <a href="edit.php?id=<?= htmlspecialchars($row['id_materi']) ?>"
            class="text-center flex-1 bg-gray-100 hover:bg-gray-200 rounded-lg p-3 font-semibold text-gray-800 truncate mb-3 md:mb-0 md:mr-4">
           <?= htmlspecialchars($row['judul_materi']) ?>
         </a>
         <div class="flex space-x-2 justify-center md:justify-end w-full md:w-auto">
-          <!-- Tombol Lihat -->
           <a href="view.php?id=<?= htmlspecialchars($row['id_materi']) ?>"
-            class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap">
-            Lihat
-          </a>
-          <!-- Tombol Hapus -->
+             class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm">Lihat</a>
           <button onclick="confirmDelete('<?= htmlspecialchars($row['id_materi']) ?>')"
-            class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap">
-            Hapus
-          </button>
+             class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-sm">Hapus</button>
         </div>
       </div>
     <?php endforeach; ?>
   </div>
 
-  <!-- Pagination -->
+  <!-- Pagination Nav -->
   <?php if ($totalPages > 1): ?>
-    <div class="mt-8 flex justify-center space-x-2">
+  <nav class="flex justify-center mt-6" aria-label="Pagination">
+    <ul class="inline-flex -space-x-px text-sm">
       <?php if ($page > 1): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $page-1 ?>" class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">&laquo; Prev</a>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $page - 1 ?>"
+             class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">&laquo; Prev</a>
+        </li>
       <?php endif; ?>
-      <?php for ($i=1; $i<=$totalPages; $i++): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $i ?>"
-           class="px-3 py-1 rounded
-             <?= $i==$page
-                ? 'bg-indigo-600 text-white'
-                : 'bg-gray-200 hover:bg-gray-300'; ?>">
-          <?= $i ?>
-        </a>
-      <?php endfor; ?>
+
+      <?php
+      $startPage = max(1, $page - 2);
+      $endPage = min($totalPages, $page + 2);
+
+      if ($startPage > 1) {
+        echo '<li><a href="?semester=' . $semester . '&page=1" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">1</a></li>';
+        if ($startPage > 2) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+      }
+
+      for ($i = $startPage; $i <= $endPage; $i++): ?>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $i ?>"
+             class="px-3 py-2 leading-tight border border-gray-300 <?= ($i === $page) ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-700'; ?>">
+             <?= $i ?>
+          </a>
+        </li>
+      <?php endfor;
+
+      if ($endPage < $totalPages) {
+        if ($endPage < $totalPages - 1) echo '<li><span class="px-3 py-2 text-gray-500">...</span></li>';
+        echo '<li><a href="?semester=' . $semester . '&page=' . $totalPages . '" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">' . $totalPages . '</a></li>';
+      }
+      ?>
+
       <?php if ($page < $totalPages): ?>
-        <a href="?semester=<?= $semester ?>&page=<?= $page+1 ?>"class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">Next &raquo;</a>
+        <li>
+          <a href="?semester=<?= $semester ?>&page=<?= $page + 1 ?>"
+             class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">Next &raquo;</a>
+        </li>
       <?php endif; ?>
-    </div>
+    </ul>
+  </nav>
   <?php endif; ?>
 
-  <!-- SweetAlert Delete -->
+  <!-- SweetAlert -->
   <script>
   function confirmDelete(id) {
     Swal.fire({
@@ -162,5 +175,4 @@ include "../../../includes/navbar_admin.php";
 <?php include "../../../includes/footer.php"; ?>
 </body>
 </html>
-
 <?php ob_end_flush(); ?>
